@@ -20,3 +20,14 @@
 
 ### Autenticação via github
 - https://github.com/settings/developers
+
+
+### AuthenticateUserService
+
+- Receber code(string)
+- Recuperar o access_token no github
+- Recuperar infos do user no github
+- Verificar se o usuário existe no DB
+- -------- SIM = Gera um token
+- -------- NÃO = Cria no DB, gera um token
+- Retornar o token com as infos do user

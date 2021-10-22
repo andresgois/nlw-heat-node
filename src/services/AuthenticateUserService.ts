@@ -1,17 +1,16 @@
 import { response } from 'express';
 import axios from "axios";
+import { NumericLiteral } from 'typescript';
 
-/**
- *  Receber code(string)
- *  Recuperar o access_token no github
- *  Recuperar infos do user no github
- *  Verificar se o usuário existe no DB
- *  -------- SIM = Gera um token
- *  -------- NÃO = Cria no DB, gera um token
- *  Retornar o token com as infos do user
- */
 interface IAccessTokenResponse {
     access_token: string;
+}
+
+interface IUserResponse {
+    avatar_url: string,
+    login: string,
+    id: Number,
+    name: string,
 }
 
 class AuthenticateUserService {
@@ -30,7 +29,7 @@ class AuthenticateUserService {
             }
         });
 
-        const response = await axios.get("http://api.github.com/user", {
+        const response = await axios.get<IUserResponse>("http://api.github.com/user", {
             headers: {
                 authorization: `Bearer ${accessTokenResponse.access_token}`
             }
