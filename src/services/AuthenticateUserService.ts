@@ -1,6 +1,5 @@
-import { response } from 'express';
 import axios from "axios";
-import { NumericLiteral } from 'typescript';
+import prismaClient from '../prima';
 
 interface IAccessTokenResponse {
     access_token: string;
@@ -33,7 +32,26 @@ class AuthenticateUserService {
             headers: {
                 authorization: `Bearer ${accessTokenResponse.access_token}`
             }
-        })
+        });
+
+        const { id, name, avatar_url, login} = response.data;
+
+        let user = await prismaClient.user.findFirst({
+            where: {
+                github_id: id
+            }
+        });
+
+        if(!user){
+            user = await prismaClient.user.create({
+                data: {
+                    github_id: id,
+                    login,
+                    avatar_url,
+                    name,
+                }
+            });
+        }
 
         return response.data;;
     }
