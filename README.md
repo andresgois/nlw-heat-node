@@ -31,3 +31,7 @@
 - -------- SIM = Gera um token
 - -------- NÃO = Cria no DB, gera um token
 - Retornar o token com as infos do user
+
+
+### Comandos prisma
+- yarn prisma migrate dev
