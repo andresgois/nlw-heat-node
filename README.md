@@ -9,6 +9,10 @@
 - yarn add @types/axios -D
 - yarn add jsonwebtoken
 - yarn add @types/jsonwebtoken -D
+- yarn add socket.io
+- yarn add @types/socket.io -D
+- yarn add cors
+- yarn add @types/cors -D
 
 ### Configurações
 - sudo apt install node-typescript
